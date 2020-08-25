@@ -17,12 +17,12 @@ const Chart = () => {
                 label: "Temperature C",
                 data: values,
                 backgroundColor: [
-                    "#3726A6",
-                    "#F2E635",
+                    // "#3726A6",
+                    // "#F2E635",
                     "#F2BE22",
-                    "#F20505",
-                    "#4A44F2",
-                    "#f43367",
+                    // "#F20505",
+                    // "#4A44F2",
+                    // "#f43367",
 
                 ],
                 borderColor: ['rgba(243, 99, 27, .7)',],
@@ -42,7 +42,7 @@ const Chart = () => {
 
     return (
         <div className={styles.Chart}>
-            <Bar data={chartData} options={{responsive: true}} width={300}/>
+            <Line data={chartData} options={{responsive: true}} width={300}/>
         </div>
     )
 }

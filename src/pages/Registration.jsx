@@ -75,6 +75,12 @@ function Registration() {
                       name="user_email"
                   />
                   <FormikControl
+                      control="input"
+                      type="text"
+                      label="Location"
+                      name="user_location"
+                  />
+                  <FormikControl
                       control="checkbox"
                       label="Notification Type: "
                       name="notificationOptions"

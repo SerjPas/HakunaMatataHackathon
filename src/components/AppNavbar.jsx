@@ -8,7 +8,7 @@ import styles from '../css/NavBar.module.css'
 const AppNavbar = () => {
 
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="dark" expand="lg" className={styles.Header}>
       <Navbar.Brand href="/" className="text-white mr-auto">Hakuna Matata</Navbar.Brand>
       <Nav className={styles.NavBarButtons}>
         <LinkContainer to="#">
