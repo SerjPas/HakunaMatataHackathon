@@ -26,7 +26,6 @@ class MysqlDB:
         user_list = []
 
         try:
-
             self.connect()
             user_select_query = "SELECT user_id, user_name, user_email, user_phone FROM users"
             self._my_cursor.execute(user_select_query)
@@ -49,7 +48,7 @@ class MysqlDB:
 
         try:
             self.connect()
-            user_select_query = "SELECT user_email FROM users"
+            user_select_query = "SELECT user_email FROM users WHERE user_email_allow=1"
             self._my_cursor.execute(user_select_query)
             mysql_response_list = self._my_cursor.fetchall()
             for user in mysql_response_list:
@@ -62,11 +61,43 @@ class MysqlDB:
             self.close_connection()
             return email_string
 
+    def get_phone_list(self):
+        phone_list = []
+
+        try:
+            self.connect()
+            user_select_query = "SELECT user_phone FROM users WHERE user_phone_allow=1"
+            self._my_cursor.execute(user_select_query)
+            mysql_response_list = self._my_cursor.fetchall()
+            for user in mysql_response_list:
+                phone_list.append(user[0])
+
+        except mysql.connector.Error as error:
+            print("Failed to insert record into MySQL table {}".format(error))
+
+        finally:
+            self.close_connection()
+            return phone_list
+
     def set_user(self, user_data):
         try:
-            user_tuple = (user_data['user_name'], user_data['user_email'], user_data['user_phone'],)
+            phone_allow = 0
+            email_allow = 0
+            if user_data['user_phone'] != "N/A":
+                phone_allow = 1
+            if user_data['user_email'] != "N/A":
+                email_allow = 1
+
+            user_tuple = (user_data['user_name'],
+                          user_data['user_email'],
+                          user_data['user_phone'],
+                          phone_allow,
+                          email_allow,)
             self.connect()
-            user_select_query = "INSERT INTO users (user_name, user_email, user_phone) VALUES (%s, %s, %s)"
+            user_select_query = "INSERT INTO users " \
+                                "(user_name, user_email, user_phone, user_phone_allow, user_email_allow) " \
+                                "VALUES (%s, %s, %s, %s, %s)"
+
             self._my_cursor.execute(user_select_query, user_tuple)
             self._mydb.commit()
 
@@ -85,4 +116,4 @@ if __name__ == "__main__":
     sql = MysqlDB()
 
     # sql.set_user(user_dictionary)
-    print(sql.get_email_list())
+    print(sql.get_phone_list())
