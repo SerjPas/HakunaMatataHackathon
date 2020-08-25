@@ -88,7 +88,7 @@ def del_user():
     try:
         content = request.json
         sql_layer.del_user(content["id"])
-        msg = {"reply": "user deleted"}
+        msg = {content["id"]: "deleted"}
         status = 200
 
     except Exception as e:

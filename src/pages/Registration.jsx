@@ -39,8 +39,6 @@ function Registration() {
   });
 
   const onSubmit = (values) => {
-
-    console.log("Form data", values);
     addFarmer(values).then((response) =>
         userTableContext.handleUserTable([...userTableContext.userTable, response.data]))
         .catch(error => {

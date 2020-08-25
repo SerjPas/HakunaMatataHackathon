@@ -10,9 +10,9 @@ const UserCard = (props) => {
 
     const {user} = props;
 
-    const handleDeleteStudent = (id) => {
-        deleteUserById(id)
-            .then(response => userTableContext.handleDeleteUser(response.deleted))
+    const handleDeleteUser = () => {
+        deleteUserById(user.user_id)
+            .then(() => userTableContext.handleDeleteUser(user.user_id))
             .catch(error => {
                 setError(error.message);
             });
@@ -33,7 +33,7 @@ const UserCard = (props) => {
                 <Card.Link href="#">Edit</Card.Link>
                 <Card.Link
                     href="#"
-                    // onClick={handleDeleteStudent(user.user_email)}
+                    onClick={handleDeleteUser}
                 >
                     Delete
                 </Card.Link>
