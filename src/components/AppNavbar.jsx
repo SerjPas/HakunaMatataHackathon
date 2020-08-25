@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
 
 
 const AppNavbar = () => {
@@ -14,7 +13,7 @@ const AppNavbar = () => {
         <LinkContainer to="/student/add">
           <Nav.Link className="text-white">About</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/signup">
+        <LinkContainer to="/dashboard">
           <Nav.Link className="text-white">Dashboard</Nav.Link>
         </LinkContainer>
       </Nav>
