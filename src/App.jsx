@@ -1,9 +1,8 @@
 import React from 'react';
 import MainPage from './pages/MainPage';
 import AppNavbar from './components/AppNavbar';
-import Registration from "./Registration";
-import Dashboard from "./Dashboard";
-import UserCard from "./UserCard";
+import Dashboard from "../src/pages/Dashboard";
+import UserCard from "../src/pages/UserCard";
 
 
 import {
@@ -14,7 +13,8 @@ import {
 } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
-import UserCard from './pages/UserCard';
+import Registration from "./pages/Registration";
+
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       </Container>
       <Switch>
         <Route exact path="/registration">
-          <Regisration />  
+          <Registration/>
         </Route>
         <Route exact path="/dashboard">
           <Dashboard />  

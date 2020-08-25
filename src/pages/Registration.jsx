@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 // import * as Yup from "yup";
 import FormikControl from "../components/FormikControl";
 import { addUser } from "../lib/api";
-function CourseEnrolmentForm() {
+function Registration() {
   const notificationOptions = [
     { key: "Email", value: "email" },
     { key: "SMS", value: "sms" },
@@ -74,4 +74,4 @@ function CourseEnrolmentForm() {
   );
 }
 
-export default CourseEnrolmentForm;
+export default Registration;
