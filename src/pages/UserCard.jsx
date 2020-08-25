@@ -26,7 +26,9 @@ const UserCard = (props) => {
         <Card className={styles.Card}>
             <Card.Body>
                 <Card.Title>
-                    <Link to={`/user/${user.user_id}`}>{user.user_name}</Link>
+                    <Link to={`/user/${user.user_id}`}>
+                        {user.user_name}
+                    </Link>
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                     {user.user_email}

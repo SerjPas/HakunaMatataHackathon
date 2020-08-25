@@ -40,8 +40,8 @@ const Dashboard = () => {
                     </ItemsCarousel>
                 </div>
                 <Link to={"/registration"} className={styles.Button}>Add User</Link>
+                <Chart/>
             </Container>
-            <Chart/>
         </div>
     )
 }
