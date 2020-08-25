@@ -1,0 +1,19 @@
+.Button {
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 20px;
+    justify-self: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    color: black;
+}
+.Button:hover {
+    text-decoration: none;
+    background-color: gray;
+}
+.Container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}

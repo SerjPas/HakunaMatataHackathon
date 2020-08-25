@@ -11,8 +11,8 @@ class MysqlDB:
         self._mydb = mysql.connector.connect(
             host="localhost",
             port="3306",
-            user="sql9355624",
-            password="pTjiIAFGGK",
+            user="root",
+            password="12345045",
             database="hackaton"
         )
         self._my_cursor = self._mydb.cursor()

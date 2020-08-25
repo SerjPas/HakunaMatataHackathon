@@ -1,35 +1,45 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import Card from "react-bootstrap/Card";
+import {Link} from "react-router-dom";
+import {deleteUserById} from "../lib/api";
+import UserTableContext from "../context/UserTableContext";
 
 const UserCard = (props) => {
-  const handleDeleteStudent = (email) => {
-    // deleteStudent(email)
-    //     .then(response => schoolTableContext.handleDeleteStudent(response.deleted))
-    //     .catch(error => {
-    //         setError(error.message);
-    //     });
-  };
+    const userTableContext = useContext(UserTableContext)
+    const [error, setError] = useState("");
 
-  return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Body>
-        <Card.Title>{props.user.user_name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {props.user.user_email}
-        </Card.Subtitle>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Edit</Card.Link>
-        <Card.Link
-          href="#"
-          onClick={handleDeleteStudent(props.user.user_email)}
-        >
-          Delete
-        </Card.Link>
-      </Card.Body>
-    </Card>
-  );
+    const {user} = props;
+
+    const handleDeleteUser = () => {
+        deleteUserById(user.user_id)
+            .then(() => userTableContext.handleDeleteUser(user.user_id))
+            .catch(error => {
+                setError(error.message);
+            });
+    };
+
+    return (
+        <Card style={{width: "18rem"}}>
+            <Card.Body>
+                <Card.Title>
+                    <Link to={`/user/${user.user_id}`}>{user.user_name}</Link>
+                </Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    {user.user_email}
+                </Card.Subtitle>
+                <Card.Text>
+                    {user.user_phone}
+                </Card.Text>
+                <Card.Link href="#">Edit</Card.Link>
+                <Card.Link
+                    href="#"
+                    onClick={handleDeleteUser}
+                >
+                    Delete
+                </Card.Link>
+            </Card.Body>
+            {error && <span className={"error"} color="secondary">{error}</span>}
+        </Card>
+    );
 };
 export default UserCard;
