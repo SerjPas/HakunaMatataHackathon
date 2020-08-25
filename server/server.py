@@ -3,12 +3,13 @@ from flask_cors import CORS
 from classes.JsonEnc import JsonEnc
 from classes.MysqlDB import MysqlDB
 from classes.Email import Email
-
+from classes.Sms import Sms
 
 app = Flask(__name__, static_folder="./static/build", template_folder="./static")
 CORS(app)
 sql_layer = MysqlDB()
 mail = Email()
+messages = Sms()
 weather_data = None
 
 
@@ -34,11 +35,19 @@ def register_user():
 @app.route('/api/weather/send', methods=['POST'])
 def send_weather():
     try:
+        message = "this is a test 2"
+
         emails = sql_layer.get_email_list()
-        mail.send_mail("this is a test 2",
-                       "this is a test 2",
-                       "joseph.azagoury@gmail.com; kammesenin@gmail.com;")
-        msg = {"reply": "Mail sent."}
+        phones = sql_layer.get_phone_list()
+
+        mail.send_mail("Weather information forecast",
+                       message,
+                       emails)
+
+        for number in phones:
+            messages.send_sms(message, number)
+
+        msg = {"reply": "Notifications sent."}
 
         status = 200
 
