@@ -1,11 +1,13 @@
 import React, {useContext, useState} from "react";
 import UserTableContext from "../context/UserTableContext";
 import ItemsCarousel from 'react-items-carousel';
-import UserCard from "./UserCard";
 import Container from "react-bootstrap/Container";
 import styles from "../css/Dashboard.module.css"
 import {Link} from "react-router-dom";
 import Chart from "../components/Chart";
+import UserCard from "./UserCard";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 
 const Dashboard = () => {
@@ -27,7 +29,13 @@ const Dashboard = () => {
                         chevronWidth={chevronWidth}
                     >
                         {userTableContext.userTable.map(user => (
-                            <UserCard key={user.user_id} user={user}/>
+                            <Container>
+                                <Row className="justify-content-md-center">
+                                    <Col xs={"auto"}  md="auto" lg="auto">
+                                        <UserCard key={user.user_id} user={user}/>
+                                    </Col>
+                                </Row>
+                            </Container>
                         ))}
                     </ItemsCarousel>
                 </div>
