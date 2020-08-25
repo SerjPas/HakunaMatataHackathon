@@ -22,6 +22,39 @@ class MysqlDB:
             self._my_cursor.close()
             self._mydb.close()
 
+    def get_user(self, user_id):
+        user_dict = {}
+        try:
+            self.connect()
+            user_select_query = "SELECT user_id, user_name, user_email, user_phone FROM users WHERE user_id=%s"
+            self._my_cursor.execute(user_select_query, (user_id,))
+            mysql_response_list = self._my_cursor.fetchall()
+            for user in mysql_response_list:
+                user_dict = {"user_id": user[0],
+                             "user_name": user[1],
+                             "user_email": user[2],
+                             "user_phone": user[3]}
+
+        except mysql.connector.Error as error:
+            print("Failed to insert record into MySQL table {}".format(error))
+
+        finally:
+            self.close_connection()
+            return user_dict
+
+    def del_user(self, user_id):
+        try:
+            self.connect()
+            user_select_query = "DELETE FROM users WHERE user_id=%s"
+            self._my_cursor.execute(user_select_query, (user_id,))
+            self._mydb.commit()
+
+        except mysql.connector.Error as error:
+            print("Failed to insert record into MySQL table {}".format(error))
+
+        finally:
+            self.close_connection()
+
     def get_all_users(self):
         user_list = []
 
@@ -116,4 +149,4 @@ if __name__ == "__main__":
     sql = MysqlDB()
 
     # sql.set_user(user_dictionary)
-    print(sql.get_phone_list())
+    print(sql.get_user(10))

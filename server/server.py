@@ -10,12 +10,45 @@ CORS(app)
 sql_layer = MysqlDB()
 mail = Email()
 messages = Sms()
+<<<<<<< HEAD
 weather_data = None
 
 
 @app.route("/")
 def index():
     return "hello"
+=======
+weather_data = [{"Day": "08/25/2020",
+                 "Temperature": "31C",
+                 "Humidity": "52%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"},
+                {"Day": "08/26/2020",
+                 "Temperature": "32C",
+                 "Humidity": "50%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"},
+                {"Day": "08/27/2020",
+                 "Temperature": "33C",
+                 "Humidity": "49%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"},
+                {"Day": "08/28/2020",
+                 "Temperature": "34C",
+                 "Humidity": "47%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"},
+                {"Day": "08/29/2020",
+                 "Temperature": "35C",
+                 "Humidity": "44%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"},
+                {"Day": "08/30/2020",
+                 "Temperature": "36C",
+                 "Humidity": "41%",
+                 "HistoricTemp": "29C",
+                 "HistoricHumidity": "55%"}]
+>>>>>>> master
 
 
 @app.route('/api/register', methods=['POST'])
@@ -61,6 +94,7 @@ def send_weather():
 @app.route('/api/weather/get', methods=['GET'])
 def get_weather():
     try:
+<<<<<<< HEAD
         msg = [{"Day": "08/25/2020",
                 "Temperature": "31C",
                },
@@ -79,8 +113,38 @@ def get_weather():
                 "Temperature": "36C",
                 }
                ]
+=======
+        msg = weather_data
         status = 200
-        weather_data = msg
+
+    except Exception as e:
+        return str(e)
+
+    return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
+                              status=status, mimetype='application/json')
+
+
+@app.route('/api/<user_id>', methods=['GET'])
+def get_user(user_id):
+    try:
+        msg = sql_layer.get_user(user_id)
+        status = 200
+
+    except Exception as e:
+        return str(e)
+
+    return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
+                              status=status, mimetype='application/json')
+
+
+@app.route('/api/delete/', methods=['DELETE'])
+def del_user():
+    try:
+        content = request.json
+        sql_layer.del_user(content["id"])
+        msg = {"reply": "user deleted"}
+>>>>>>> master
+        status = 200
 
     except Exception as e:
         return str(e)
