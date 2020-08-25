@@ -4,6 +4,7 @@ import ItemsCarousel from 'react-items-carousel';
 import UserCard from "./UserCard";
 import Container from "react-bootstrap/Container";
 import styles from "../css/Dashboard.module.css"
+import {Link} from "react-router-dom";
 
 
 const Dashboard = () => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
                     ))}
                 </ItemsCarousel>
             </div>
-            {/*<Link to={"/registration"} className={styles.Button}>Add User</Link>*/}
+            <Link to={"/registration"} className={styles.Button}>Add User</Link>
         </Container>
     )
 }
