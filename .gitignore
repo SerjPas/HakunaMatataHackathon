@@ -29,3 +29,4 @@ yarn-error.log*
 *.pyc
 
 server/classes/__pycache__/
+yarn.lock

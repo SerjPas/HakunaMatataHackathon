@@ -7,6 +7,12 @@ export async function getFarmers() {
   return await axios.get(`${baseUrl}/api/list`);
 }
 
+export async function getUserByEmail(email) {
+  return axios.get(`${baseUrl}/api/${email}`).then((response) => {
+    return response.data;
+  });
+}
+
 // get weather data
 export async function getWeatherData() {
   return await axios.get(`${baseUrl}/api/weather/get`)

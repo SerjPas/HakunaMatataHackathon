@@ -10,6 +10,7 @@ import Container from "react-bootstrap/Container";
 import Registration from "./pages/Registration";
 import UserTableContext from "./context/UserTableContext";
 import { getFarmers } from "./lib/api";
+import UserPage from "./pages/UserPage";
 
 // let mockUsers = [{
 //     name: "bob1",
@@ -59,6 +60,7 @@ function App() {
         <AppNavbar />
         <Switch>
           <Route exact path={"/"} component={MainPage} />
+          <Route exact path="/user/:email" component={UserPage} />
           <Route exact path="/registration" component={Registration} />
           {userTable.length > 0 ? (
             <Route exact path="/dashboard" component={Dashboard} />
