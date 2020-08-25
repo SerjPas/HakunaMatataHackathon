@@ -1,8 +1,9 @@
-from flask import Flask, request, json, render_template
+from flask import Flask, request, json
 from flask_cors import CORS
+
+from classes.Email import Email
 from classes.JsonEnc import JsonEnc
 from classes.MysqlDB import MysqlDB
-from classes.Email import Email
 from classes.Sms import Sms
 
 app = Flask(__name__, static_folder="./static/build", template_folder="./static")
@@ -10,45 +11,32 @@ CORS(app)
 sql_layer = MysqlDB()
 mail = Email()
 messages = Sms()
-<<<<<<< HEAD
 weather_data = None
 
 
 @app.route("/")
 def index():
     return "hello"
-=======
+
+
 weather_data = [{"Day": "08/25/2020",
                  "Temperature": "31C",
-                 "Humidity": "52%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"},
+                 },
                 {"Day": "08/26/2020",
                  "Temperature": "32C",
-                 "Humidity": "50%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"},
+                 },
                 {"Day": "08/27/2020",
                  "Temperature": "33C",
-                 "Humidity": "49%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"},
+                 },
                 {"Day": "08/28/2020",
                  "Temperature": "34C",
-                 "Humidity": "47%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"},
+                 },
                 {"Day": "08/29/2020",
                  "Temperature": "35C",
-                 "Humidity": "44%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"},
+                 },
                 {"Day": "08/30/2020",
                  "Temperature": "36C",
-                 "Humidity": "41%",
-                 "HistoricTemp": "29C",
-                 "HistoricHumidity": "55%"}]
->>>>>>> master
+                 }]
 
 
 @app.route('/api/register', methods=['POST'])
@@ -94,10 +82,9 @@ def send_weather():
 @app.route('/api/weather/get', methods=['GET'])
 def get_weather():
     try:
-<<<<<<< HEAD
         msg = [{"Day": "08/25/2020",
                 "Temperature": "31C",
-               },
+                },
                {"Day": "08/26/2020",
                 "Temperature": "32C",
                 },
@@ -113,7 +100,7 @@ def get_weather():
                 "Temperature": "36C",
                 }
                ]
-=======
+
         msg = weather_data
         status = 200
 
@@ -143,7 +130,7 @@ def del_user():
         content = request.json
         sql_layer.del_user(content["id"])
         msg = {"reply": "user deleted"}
->>>>>>> master
+
         status = 200
 
     except Exception as e:

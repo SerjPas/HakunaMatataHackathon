@@ -8,7 +8,8 @@ export async function getFarmers() {
 }
 
 export async function getUserById(id) {
-  return axios.get(`${baseUrl}/api/${id}`).then((response) => {
+  return axios.get(`${baseUrl}api/${id}`).then((response) => {
+    console.log(response, 'respo')
     return response.data;
   });
 }
