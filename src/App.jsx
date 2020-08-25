@@ -60,7 +60,7 @@ function App() {
         <AppNavbar />
         <Switch>
           <Route exact path={"/"} component={MainPage} />
-          <Route exact path="/user/:email" component={UserPage} />
+          <Route exact path="/user/:id" component={UserPage} />
           <Route exact path="/registration" component={Registration} />
           {userTable.length > 0 ? (
             <Route exact path="/dashboard" component={Dashboard} />
