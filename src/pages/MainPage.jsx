@@ -1,15 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import styles from "../css/MainPage.module.css"
-import {getFarmers, getWeatherData} from '../lib/api';
-import UserTableContext from "../context/UserTableContext";
+import React from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image'
-import Dashboard from "./Dashboard";
+
 
 const MainPage = () => {
-
-    const [weatherData, setWeatherData] = useState([]);
 
     return (
        <Container class="cont" fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
