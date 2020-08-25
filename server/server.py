@@ -108,10 +108,12 @@ def get_user(user_id):
                               status=status, mimetype='application/json')
 
 
-@app.route('/api/delete/<user_id>', methods=['GET'])
-def del_user(user_id):
+@app.route('/api/delete/', methods=['DELETE'])
+def del_user():
     try:
-        msg = sql_layer.del_user(user_id)
+        content = request.json
+        sql_layer.del_user(content["id"])
+        msg = {"reply": "user deleted"}
         status = 200
 
     except Exception as e:
@@ -119,6 +121,7 @@ def del_user(user_id):
 
     return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
                               status=status, mimetype='application/json')
+
 
 @app.route('/api/list', methods=['GET'])
 def get_user_list():
