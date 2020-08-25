@@ -9,25 +9,25 @@ export async function getFarmers() {
 }
 
 // get weather data
-export function getWeatherData() {
-  const response = await axios.get(`${baseUrl}/api/weather`);
+export async function getWeatherData() {
+  const response = await axios.get(`${baseUrl}/api/weather/get`);
   return response
 }
 
 // add a farmer
 export async function addFarmer(farmer) {
-  const response = await axios.post(`${baseUrl}/api/list`, farmer);
+  const response = await axios.post(`${baseUrl}/api/register`, farmer);
   return response;
 }
 
 // edit farmer
-export function editFarmer(farmer) {
+export async function editFarmer(farmer) {
   const response = await axios.post(`${baseUrl}/api/farmer`, farmer);
   return response
 }
 
 // delete farmer
-export function deleteFarmer(farmer) {
+export async function deleteFarmer(farmer) {
   const response = await axios.post(`${baseUrl}/api/farmer`, farmer);
   return response
 }

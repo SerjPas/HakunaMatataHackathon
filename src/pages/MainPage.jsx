@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Context from "../context/Context";
 import { getFarmers, getWeatherData } from '../lib/api';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 
@@ -30,16 +24,13 @@ const MainPage = () => {
   }, []);
 
 
-
   return (
-    <Router>
-      <Context.Provider value = {}>
-        <Container>
-          
-        </Container>
-      </Context.Provider>
-    </Router>
-
+    <Context.Provider value = {{farmerList: [], weatherData: []}}>
+      <Container>
+        
+      </Container>
+    </Context.Provider>
   )
-
 }
+
+export default MainPage;
