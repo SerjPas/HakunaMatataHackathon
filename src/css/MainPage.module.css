@@ -1,0 +1,15 @@
+.H1 {
+    margin:20px;
+    font-size: calc(16px + 0.4vw);
+    text-align: left;
+
+}
+.Body{
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url("https://bountifield.org/wp-content/uploads/2019/07/Africa-Farm-Field-1-1080.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
