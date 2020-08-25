@@ -25,7 +25,7 @@ const Dashboard = () => {
                     chevronWidth={chevronWidth}
                 >
                     {userTableContext.userTable.map(user => (
-                            <UserCard user={user}/>
+                            <UserCard key={user.user_id} user={user}/>
                     ))}
                 </ItemsCarousel>
             </div>

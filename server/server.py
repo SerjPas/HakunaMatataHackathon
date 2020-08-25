@@ -15,7 +15,7 @@ weather_data = None
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return "hello"
 
 
 @app.route('/api/register', methods=['POST'])
