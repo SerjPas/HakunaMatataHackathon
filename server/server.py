@@ -20,13 +20,13 @@ weather_data = r.json()
 def register_user():
     try:
         content = request.json
-        sql_layer.set_user(content)
+        msg = sql_layer.set_user(content)
         # msg = {"reply": "User registered."}
         status = 200
     except Exception as e:
         return str(e)
 
-    return app.response_class(response=json.dumps(content, indent=1, cls=JsonEnc),
+    return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
                               status=status, mimetype='application/json')
 
 
