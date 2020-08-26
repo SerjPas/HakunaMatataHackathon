@@ -1,18 +1,19 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
 import TextError from "./TextError";
+import styles from "../css/Registration.module.css";
 
 const Input = (props) => {
   const { label, name, ...rest } = props;
   return (
-    <div className="d-flex justify-content-center mb-1">
+    <div className={styles.textInput}>
       <label htmlFor={name} className="mr-3">
         {label}:
       </label>
-      <Field id={name} name={name} {...rest} />
+      <Field className={styles.textField} id={name} name={name} {...rest} />
       <ErrorMessage name={name} component={TextError} />
     </div>
   );
 };
 
-export default Input
+export default Input;

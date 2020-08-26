@@ -16,3 +16,12 @@
 .wrapper {
   margin-left: 20px;
 }
+
+.textInput {
+  margin: 10px;
+}
+
+.textField {
+  border: 1px solid grey;
+  border-radius: 5px;
+}
