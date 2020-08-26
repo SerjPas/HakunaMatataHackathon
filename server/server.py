@@ -1,10 +1,11 @@
-from flask import Flask, request, json, render_template
+import requests
+from flask import Flask, request, json
 from flask_cors import CORS
+
+from classes.Email import Email
 from classes.JsonEnc import JsonEnc
 from classes.MysqlDB import MysqlDB
-from classes.Email import Email
 from classes.Sms import Sms
-import requests
 
 app = Flask(__name__, static_folder="./static/build", template_folder="./static")
 CORS(app)
@@ -83,13 +84,11 @@ def get_user(user_id):
                               status=status, mimetype='application/json')
 
 
-@app.route('/api/delete', methods=['DELETE'])
-def del_user():
+@app.route('/api/delete/<user_id>', methods=['GET'])
+def del_user(user_id):
     try:
-        content = request.json
-        print(content)
-        sql_layer.del_user(content["id"])
-        msg = {content["id"]: "deleted"}
+        sql_layer.del_user(user_id)
+        msg = {"reply": "user deleted"}
         status = 200
 
     except Exception as e:
