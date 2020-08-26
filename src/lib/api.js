@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// const baseUrl = "http://localhost:5000";
+// const baseUrl = "https://python-flask-hakuna-server.herokuapp.com/";
 const baseUrl = "https://python-flask-hakuna-server.herokuapp.com/";
 
 // get a list of farmers

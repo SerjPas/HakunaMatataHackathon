@@ -14,8 +14,8 @@ const MainPage = () => {
         weather prediction forecasts and solutions for efficient energy and
         water consumption based on complex data models.
       </h1>
-      <div className={styles.Button}>
-        <button onClick={onSubmit}>Send To All</button>
+      <div className={styles.Div} >
+        <button className={styles.Button} onClick={onSubmit}>Send To All</button>
       </div>
     </div>
   );

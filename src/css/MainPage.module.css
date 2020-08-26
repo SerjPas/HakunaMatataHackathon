@@ -1,5 +1,5 @@
 .H1 {
-  margin: 20px;
+  margin: 100px 20px;
   font-size: calc(16px + 0.4vw);
   text-align: left;
 }
@@ -15,6 +15,19 @@
 }
 
 .Button {
+  display: flex;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 15px;
+  background-color: red;
+}
+
+.Button:hover {
+  padding: 15px;
+  background-color: lightcoral;
+}
+
+.Div{
   display: flex;
   justify-content: center;
 }

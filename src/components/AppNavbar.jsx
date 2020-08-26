@@ -11,9 +11,6 @@ const AppNavbar = () => {
     <Navbar bg="dark" expand="lg" className={styles.Header}>
       <Navbar.Brand href="/" className="text-white mr-auto">Hakuna Matata</Navbar.Brand>
       <Nav className={styles.NavBarButtons}>
-        <LinkContainer to="#">
-          <Nav.Link className="text-white">About</Nav.Link>
-        </LinkContainer>
         <LinkContainer to="/dashboard">
           <Nav.Link className="text-white">Dashboard</Nav.Link>
         </LinkContainer>
