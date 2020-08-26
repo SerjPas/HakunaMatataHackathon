@@ -14,9 +14,10 @@ const UserCard = (props) => {
 
     const {user} = props;
 
-    const handleDeleteUser = () => {
-        deleteUserById(user.user_id)
-            .then(() => userTableContext.handleDeleteUser(user.user_id))
+    const handleDeleteUser = (id) => {
+        setError('');
+        deleteUserById(id)
+            .then(() => userTableContext.handleDeleteUser(id))
             .catch(error => {
                 setError(error.message);
             });
@@ -39,7 +40,7 @@ const UserCard = (props) => {
                 <EditIcon/>
                 <DeleteIcon
                     className={styles.ButtonDelete}
-                    onClick={handleDeleteUser}/>
+                    onClick={() => handleDeleteUser(user.user_id)}/>
             </Card.Body>
             {error && <span className={styles.Error}>{error}</span>}
         </Card>
