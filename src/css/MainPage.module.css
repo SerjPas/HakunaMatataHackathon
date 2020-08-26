@@ -15,6 +15,7 @@
 }
 
 .Button {
+  color: white;
   display: flex;
   justify-content: center;
   border-radius: 100px;
