@@ -29,28 +29,46 @@ def register_user():
                               status=status, mimetype='application/json')
 
 
-@app.route('/api/weather/send', methods=['POST'])
+@app.route('/api/weather/send', methods=['GET'])
 def send_weather():
     try:
         message = str(weather_data)
-
         emails = sql_layer.get_email_list()
         phones = sql_layer.get_phone_list()
-
         mail.send_mail("Weather information forecast",
                        message,
                        emails)
 
         for number in phones:
             messages.send_sms(message, number)
-
         msg = {"reply": "Notifications sent."}
 
+        status = 200
+    except Exception as e:
+        return str(e)
+    return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
+                              status=status, mimetype='application/json')
+
+
+@app.route('/api/weather/user/<user_id>', methods=['GET'])
+def send_weather_single(user_id):
+    try:
+        message = str(weather_data)
+        contact_info = sql_layer.get_user_contact_info(user_id)
+
+        if contact_info[0] != "N/A":
+            mail.send_mail("Weather information forecast",
+                           message,
+                           contact_info[0])
+
+        if contact_info[1] != "N/A":
+            messages.send_sms(message, contact_info[1])
+
+        msg = {"reply": "Notification sent."}
         status = 200
 
     except Exception as e:
         return str(e)
-
     return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
                               status=status, mimetype='application/json')
 

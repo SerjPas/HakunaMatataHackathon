@@ -94,6 +94,25 @@ class MysqlDB:
             self.close_connection()
             return email_string
 
+    def get_user_contact_info(self, user_id):
+        user_contact_info = []
+
+        try:
+            self.connect()
+            user_select_query = "SELECT user_email, user_phone FROM users WHERE user_id=%s"
+            self._my_cursor.execute(user_select_query, (user_id,))
+            mysql_response_list = self._my_cursor.fetchall()
+            for user in mysql_response_list:
+                user_contact_info.append(user[0])
+                user_contact_info.append(user[1])
+
+        except mysql.connector.Error as error:
+            print("Failed to insert record into MySQL table {}".format(error))
+
+        finally:
+            self.close_connection()
+            return user_contact_info
+
     def get_phone_list(self):
         phone_list = []
 
@@ -149,4 +168,4 @@ if __name__ == "__main__":
     sql = MysqlDB()
 
     # sql.set_user(user_dictionary)
-    print(sql.get_user(10))
+    print(sql.get_user_contact_info(10))
