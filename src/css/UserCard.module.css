@@ -23,3 +23,15 @@
     color: red;
     text-align: center;
 }
+
+.Link {
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.Link:hover{
+    color: black;
+
+}

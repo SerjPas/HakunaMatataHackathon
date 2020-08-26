@@ -86,7 +86,7 @@ class MysqlDB:
             self._my_cursor.execute(user_select_query)
             mysql_response_list = self._my_cursor.fetchall()
             for user in mysql_response_list:
-                email_string += user[0] + "; "
+                email_string += user[0] + ", "
 
         except mysql.connector.Error as error:
             print("Failed to insert record into MySQL table {}".format(error))
@@ -152,16 +152,16 @@ class MysqlDB:
                                 "VALUES (%s, %s, %s, %s, %s)"
 
             self._my_cursor.execute(user_select_query, user_tuple)
-            student_id = self._my_cursor.lastrowid
+            user_id = self._my_cursor.lastrowid
             self._mydb.commit()
-            user_data['user_id'] = student_id
-            return user_data
+            user_data['user_id'] = user_id
 
         except mysql.connector.Error as error:
             print("Failed to insert record into MySQL table {}".format(error))
 
         finally:
             self.close_connection()
+            return user_data
 
 
 if __name__ == "__main__":

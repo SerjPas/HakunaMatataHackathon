@@ -6,10 +6,12 @@ import { addFarmer } from "../lib/api";
 import Container from "react-bootstrap/Container";
 import styles from "../css/Registration.module.css";
 import UserTableContext from "../context/UserTableContext";
+import Redirect from "react-router-dom/es/Redirect";
 
 function Registration() {
   const userTableContext = useContext(UserTableContext);
   const [error, setError] = useState("");
+    const [isAdded, setIsAdded] = useState(false);
   // const notificationOptions = [
   //   { key: "Email", value: "email" },
   //   { key: "SMS", value: "sms" },
@@ -40,11 +42,13 @@ function Registration() {
 
   const onSubmit = (values) => {
     addFarmer(values)
-      .then((response) =>
-        userTableContext.handleUserTable([
-          ...userTableContext.userTable,
-          response.data,
-        ])
+      .then(response => {
+              userTableContext.handleUserTable([
+                  ...userTableContext.userTable,
+                  response.data,
+              ])
+          setIsAdded(true);
+          }
       )
       .catch((error) => {
         setError(error.message);
@@ -53,51 +57,54 @@ function Registration() {
 
   return (
     <Container className={styles.Container}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {(formik) => {
-          return (
-            <Form>
-              <FormikControl
-                control="input"
-                type="text"
-                label="Full Name"
-                name="user_name"
-              />
-              <FormikControl
-                control="input"
-                type="text"
-                label="Phone Number"
-                name="user_phone"
-              />
-              <FormikControl
-                control="input"
-                type="email"
-                label="Email"
-                name="user_email"
-              />
-              {/*<FormikControl*/}
-              {/*  control="checkbox"*/}
-              {/*  label="Notification Type: "*/}
-              {/*  name="notificationOptions"*/}
-              {/*  options={notificationOptions}*/}
-              {/*/>*/}
-              {/*<FormikControl*/}
-              {/*  control="checkbox"*/}
-              {/*  label="Data Type: "*/}
-              {/*  name="dataOptions"*/}
-              {/*  options={dataOptions}*/}
-              {/*/>*/}
-              <button className={styles.Button} type="submit">
-                Submit
-              </button>
-            </Form>
-          );
-        }}
-      </Formik>
+        {isAdded && error.length < 1 ? (<Redirect to={{ pathname: '/dashboard' }} />) : (
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
+            >
+                {(formik) => {
+                    return (
+                        <Form>
+                            <FormikControl
+                                control="input"
+                                type="text"
+                                label="Full Name"
+                                name="user_name"
+                            />
+                            <FormikControl
+                                control="input"
+                                type="text"
+                                label="Phone Number"
+                                name="user_phone"
+                            />
+                            <FormikControl
+                                control="input"
+                                type="email"
+                                label="Email"
+                                name="user_email"
+                            />
+                            {/*<FormikControl*/}
+                            {/*  control="checkbox"*/}
+                            {/*  label="Notification Type: "*/}
+                            {/*  name="notificationOptions"*/}
+                            {/*  options={notificationOptions}*/}
+                            {/*/>*/}
+                            {/*<FormikControl*/}
+                            {/*  control="checkbox"*/}
+                            {/*  label="Data Type: "*/}
+                            {/*  name="dataOptions"*/}
+                            {/*  options={dataOptions}*/}
+                            {/*/>*/}
+                            <button
+                                className={styles.Button} type="submit">
+                                Submit
+                            </button>
+                        </Form>
+                    );
+                }}
+            </Formik>
+            )}
     </Container>
   );
 }
