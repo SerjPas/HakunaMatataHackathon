@@ -8,14 +8,15 @@ function CheckboxGroup(props) {
 
   return (
     <div>
-      <label className={styles.container}>{label}</label>
+      <label className={styles.Container}>{label}</label>
       <Field name={name}>
         {({ field }) => {
           return options.map((option) => {
             return (
               <React.Fragment key={option.key}>
-                <div className={styles.Container}>
+                <div className={styles.wrapper}>
                   <input
+                    className="mr-2"
                     type="checkbox"
                     id={option.value}
                     {...field}
