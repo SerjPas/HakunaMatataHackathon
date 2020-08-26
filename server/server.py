@@ -12,8 +12,7 @@ CORS(app)
 sql_layer = MysqlDB()
 mail = Email()
 messages = Sms()
-r = requests.get('https://hakuna-matata-weather.herokuapp.com/predict_7_days')
-weather_data = r.json()
+
 
 
 @app.route('/api/register', methods=['POST'])
@@ -33,6 +32,8 @@ def register_user():
 @app.route('/api/weather/send', methods=['GET'])
 def send_weather():
     try:
+        r = requests.get('https://hakuna-matata-weather.herokuapp.com/predict_7_days')
+        weather_data = r.json()
         message = str(weather_data)
         emails = sql_layer.get_email_list()
         phones = sql_layer.get_phone_list()
@@ -54,6 +55,8 @@ def send_weather():
 @app.route('/api/weather/user/<user_id>', methods=['GET'])
 def send_weather_single(user_id):
     try:
+        r = requests.get('https://hakuna-matata-weather.herokuapp.com/predict_7_days')
+        weather_data = r.json()
         message = str(weather_data)
         contact_info = sql_layer.get_user_contact_info(user_id)
 

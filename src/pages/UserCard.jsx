@@ -44,10 +44,10 @@ const UserCard = (props) => {
                 <Card.Text>
                     {user.user_phone}
                 </Card.Text>
-                <Link to={`/edit/${user.user_id}`}
-                      size="small" color="primary" className={styles.Link}>
-                    <EditIcon/>
-                </Link>
+                {/*<Link to={`/edit/${user.user_id}`}*/}
+                {/*      size="small" color="primary" className={styles.Link}>*/}
+                {/*    <EditIcon/>*/}
+                {/*</Link>*/}
                 <div>
                     <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
                         <DeleteIcon/>
