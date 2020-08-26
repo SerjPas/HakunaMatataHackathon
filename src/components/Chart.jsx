@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getWeatherData} from "../lib/api";
-import {Pie} from "react-chartjs-2";
+import {Bar, Line, Pie, Scatter} from "react-chartjs-2";
+import styles from '../css/Chart.module.css'
 
 
 const Chart = () => {
@@ -13,18 +14,18 @@ const Chart = () => {
         setChartData({
             labels: keys,
             datasets: [{
-                label: "skills",
+                label: "Temperature C",
                 data: values,
                 backgroundColor: [
-                    "#3726A6",
-                    "#F2E635",
+                    // "#3726A6",
+                    // "#F2E635",
                     "#F2BE22",
-                    "#F20505",
-                    "#4A44F2",
-                    "#f43367",
+                    // "#F20505",
+                    // "#4A44F2",
+                    // "#f43367",
 
                 ],
-                borderColor: ['rgba(200, 99, 132, .7)',],
+                borderColor: ['rgba(243, 99, 27, .7)',],
                 borderWidth: 2
             }]
         })
@@ -33,15 +34,15 @@ const Chart = () => {
     const handleGetWeatherData = () => {
         getWeatherData().then(response => {
             console.log(response.data)
-            // chart(response.data);
+            chart(response.data);
         })
     }
 
     useEffect(() => handleGetWeatherData(), [])
 
     return (
-        <div>
-            <Pie data={chartData} options={{responsive: true}} width={300}/>
+        <div className={styles.Chart}>
+            <Line data={chartData} options={{responsive: true}} width={300}/>
         </div>
     )
 }

@@ -1,0 +1,25 @@
+.Card{
+    text-align: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, white, lightgray);
+    border-radius: 10px;
+    box-shadow: 4px 4px 40px 0px rgba(0, 0, 0, 1);
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 15px;
+    transition-property: border-radius;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    display: inline-block;
+    border: 1px solid #eee;
+    min-width: 200px;
+    margin: 10px;
+
+}
+.ButtonDelete{
+    margin-left: 10px;
+}
+.Error{
+    color: red;
+    text-align: center;
+}

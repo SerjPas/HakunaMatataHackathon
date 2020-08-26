@@ -52,6 +52,7 @@ function Registration() {
   };
 
   return (
+<<<<<<< HEAD
     <Container className={styles.Container}>
       <Formik
         initialValues={initialValues}
@@ -99,6 +100,59 @@ function Registration() {
         }}
       </Formik>
     </Container>
+=======
+      <Container className={styles.Container}>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+        >
+          {(formik) => {
+            return (
+                <Form>
+                  <FormikControl
+                      control="input"
+                      type="text"
+                      label="Full Name"
+                      name="user_name"
+                  />
+                  <FormikControl
+                      control="input"
+                      type="text"
+                      label="Phone Number"
+                      name="user_phone"
+                  />
+                  <FormikControl
+                      control="input"
+                      type="email"
+                      label="Email"
+                      name="user_email"
+                  />
+                  <FormikControl
+                      control="input"
+                      type="text"
+                      label="Location"
+                      name="user_location"
+                  />
+                  <FormikControl
+                      control="checkbox"
+                      label="Notification Type: "
+                      name="notificationOptions"
+                      options={notificationOptions}
+                  />
+                  <FormikControl
+                      control="checkbox"
+                      label="Data Type: "
+                      name="dataOptions"
+                      options={dataOptions}
+                  />
+                  <button type="submit">Submit</button>
+                </Form>
+            );
+          }}
+        </Formik>
+      </Container>
+>>>>>>> master
   );
 }
 

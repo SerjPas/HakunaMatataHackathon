@@ -1,0 +1,25 @@
+.Wrapper{
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+.Card{
+    min-width: 80%;
+}
+
+.Body{
+    display: flex;
+    justify-items: center;
+}
+.Text{
+    margin-left: 20px;
+    padding: 10px;
+}
+.Margin{
+    margin-right: 10px;
+}
+
+.Buttons{
+    display: flex;
+    text-align: center;
+}

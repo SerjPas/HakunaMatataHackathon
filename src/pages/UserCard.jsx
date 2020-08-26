@@ -3,6 +3,10 @@ import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
 import {deleteUserById} from "../lib/api";
 import UserTableContext from "../context/UserTableContext";
+import styles from '../css/UserCard.module.css'
+import Button from "react-bootstrap/Button";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const UserCard = (props) => {
     const userTableContext = useContext(UserTableContext)
@@ -19,10 +23,12 @@ const UserCard = (props) => {
     };
 
     return (
-        <Card style={{width: "18rem"}}>
+        <Card className={styles.Card}>
             <Card.Body>
                 <Card.Title>
-                    <Link to={`/user/${user.user_id}`}>{user.user_name}</Link>
+                    <Link to={`/user/${user.user_id}`}>
+                        {user.user_name}
+                    </Link>
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                     {user.user_email}
@@ -30,15 +36,12 @@ const UserCard = (props) => {
                 <Card.Text>
                     {user.user_phone}
                 </Card.Text>
-                <Card.Link href="#">Edit</Card.Link>
-                <Card.Link
-                    href="#"
-                    onClick={handleDeleteUser}
-                >
-                    Delete
-                </Card.Link>
+                <EditIcon/>
+                <DeleteIcon
+                    className={styles.ButtonDelete}
+                    onClick={handleDeleteUser}/>
             </Card.Body>
-            {error && <span className={"error"} color="secondary">{error}</span>}
+            {error && <span className={styles.Error}>{error}</span>}
         </Card>
     );
 };
