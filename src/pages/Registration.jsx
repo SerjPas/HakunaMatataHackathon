@@ -10,22 +10,22 @@ import UserTableContext from "../context/UserTableContext";
 function Registration() {
   const userTableContext = useContext(UserTableContext);
   const [error, setError] = useState("");
-  const notificationOptions = [
-    { key: "Email", value: "email" },
-    { key: "SMS", value: "sms" },
-  ];
-  const dataOptions = [
-    { key: "Temp", value: "temp" },
-    { key: "Temp Change", value: "changeTemp" },
-    { key: "Min Temp", value: "minTemp" },
-  ];
+  // const notificationOptions = [
+  //   { key: "Email", value: "email" },
+  //   { key: "SMS", value: "sms" },
+  // ];
+  // const dataOptions = [
+  //   { key: "Temp", value: "temp" },
+  //   { key: "Temp Change", value: "changeTemp" },
+  //   { key: "Min Temp", value: "minTemp" },
+  // ];
 
   const initialValues = {
     user_name: "",
     user_phone: "",
     user_email: "",
-    notificationOptions: [],
-    dataOptions: [],
+    // notificationOptions: [],
+    // dataOptions: [],
   };
 
   const validationSchema = Yup.object({
@@ -34,8 +34,8 @@ function Registration() {
       .required("Required")
       .min(10, "The phone number needs at least 10 digits"),
     user_email: Yup.string().email("Invalid email format").required("Required"),
-    notificationOptions: Yup.string().required("Required"),
-    dataOptions: Yup.string().required("Required"),
+    // notificationOptions: Yup.string().required("Required"),
+    // dataOptions: Yup.string().required("Required"),
   });
 
   const onSubmit = (values) => {
@@ -79,18 +79,18 @@ function Registration() {
                 label="Email"
                 name="user_email"
               />
-              <FormikControl
-                control="checkbox"
-                label="Notification Type: "
-                name="notificationOptions"
-                options={notificationOptions}
-              />
-              <FormikControl
-                control="checkbox"
-                label="Data Type: "
-                name="dataOptions"
-                options={dataOptions}
-              />
+              {/*<FormikControl*/}
+              {/*  control="checkbox"*/}
+              {/*  label="Notification Type: "*/}
+              {/*  name="notificationOptions"*/}
+              {/*  options={notificationOptions}*/}
+              {/*/>*/}
+              {/*<FormikControl*/}
+              {/*  control="checkbox"*/}
+              {/*  label="Data Type: "*/}
+              {/*  name="dataOptions"*/}
+              {/*  options={dataOptions}*/}
+              {/*/>*/}
               <button className={styles.Button} type="submit">
                 Submit
               </button>

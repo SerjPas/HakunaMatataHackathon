@@ -7,17 +7,24 @@ import styles from '../css/UserCard.module.css'
 import Button from "react-bootstrap/Button";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from "@material-ui/core/IconButton";
+import ConfirmDialog from "../components/ConfirmDialog";
 
 const UserCard = (props) => {
     const userTableContext = useContext(UserTableContext)
     const [error, setError] = useState("");
+    const [confirmOpen, setConfirmOpen] = useState(false)
 
     const {user} = props;
 
     const handleDeleteUser = (id) => {
         setError('');
         deleteUserById(id)
-            .then(() => userTableContext.handleDeleteUser(id))
+            .then(response => {
+                userTableContext.handleDeleteUser(response.deleted)
+                console.log(response.deleted)
+                console.log(userTableContext.userTable)
+            })
             .catch(error => {
                 setError(error.message);
             });
@@ -38,9 +45,20 @@ const UserCard = (props) => {
                     {user.user_phone}
                 </Card.Text>
                 <EditIcon/>
-                <DeleteIcon
-                    className={styles.ButtonDelete}
-                    onClick={() => handleDeleteUser(user.user_id)}/>
+                <div>
+                    <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
+                        <DeleteIcon/>
+                    </IconButton>
+                    <ConfirmDialog
+                        title="Delete this Student?"
+                        open={confirmOpen}
+                        setOpen={setConfirmOpen}
+                        onConfirm={handleDeleteUser}
+                        user={user}
+                    >
+                        Are you sure you want to delete this user?
+                    </ConfirmDialog>
+                </div>
             </Card.Body>
             {error && <span className={styles.Error}>{error}</span>}
         </Card>

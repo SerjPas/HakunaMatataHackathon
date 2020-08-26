@@ -21,12 +21,12 @@ def register_user():
     try:
         content = request.json
         sql_layer.set_user(content)
-        msg = {"reply": "User registered."}
+        # msg = {"reply": "User registered."}
         status = 200
     except Exception as e:
         return str(e)
 
-    return app.response_class(response=json.dumps(msg, indent=1, cls=JsonEnc),
+    return app.response_class(response=json.dumps(content, indent=1, cls=JsonEnc),
                               status=status, mimetype='application/json')
 
 
@@ -87,8 +87,8 @@ def get_user(user_id):
 @app.route('/api/delete/<user_id>', methods=['GET'])
 def del_user(user_id):
     try:
-        sql_layer.del_user(user_id)
-        msg = {"reply": "user deleted"}
+        id = sql_layer.del_user(user_id)
+        msg = {"deleted": id}
         status = 200
 
     except Exception as e:

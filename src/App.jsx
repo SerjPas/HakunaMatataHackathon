@@ -4,7 +4,7 @@ import AppNavbar from "./components/AppNavbar";
 import Dashboard from "../src/pages/Dashboard";
 
 
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Registration from "./pages/Registration";
 import UserTableContext from "./context/UserTableContext";
 import {getFarmers} from "./lib/api";
@@ -28,8 +28,8 @@ function App() {
         setUserTable(userTable);
     }
 
-    function handleDeleteUser(id) {
-        setUserTable(userTable.filter(item => item.id !== id));
+    function handleDeleteUser() {
+        handleGetUsers()
     }
 
     return (

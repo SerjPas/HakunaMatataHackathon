@@ -15,9 +15,7 @@ export async function getUserById(id) {
 }
 
 export async function deleteUserById(id) {
-  const httpReqHeaders = {}
-  const axiosConfigObject = {headers: httpReqHeaders, data: {id: id}};
-  return axios.delete(`${baseUrl}/api/delete`, axiosConfigObject).then(response => {
+  return axios.get(`${baseUrl}/api/delete/${id}`).then(response => {
     return response.data;
   });
 }

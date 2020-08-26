@@ -11,8 +11,8 @@ class MysqlDB:
         self._mydb = mysql.connector.connect(
             host="localhost",
             port="3306",
-            user="iaxelrad",
-            password="iAxE1989",
+            user="root",
+            password="12345045",
             database="hackaton"
         )
         self._my_cursor = self._mydb.cursor()
@@ -48,6 +48,7 @@ class MysqlDB:
             user_select_query = "DELETE FROM users WHERE user_id=%s"
             self._my_cursor.execute(user_select_query, (user_id,))
             self._mydb.commit()
+            return user_id
 
         except mysql.connector.Error as error:
             print("Failed to insert record into MySQL table {}".format(error))
@@ -132,7 +133,10 @@ class MysqlDB:
                                 "VALUES (%s, %s, %s, %s, %s)"
 
             self._my_cursor.execute(user_select_query, user_tuple)
+            student_id = self._my_cursor.lastrowid
             self._mydb.commit()
+            user_data['user_id'] = student_id
+            return user_data
 
         except mysql.connector.Error as error:
             print("Failed to insert record into MySQL table {}".format(error))
