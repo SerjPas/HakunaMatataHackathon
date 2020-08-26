@@ -83,11 +83,10 @@ def get_user(user_id):
                               status=status, mimetype='application/json')
 
 
-@app.route('/api/delete/', methods=['DELETE'])
-def del_user():
+@app.route('/api/delete/<user_id>', methods=['GET'])
+def del_user(user_id):
     try:
-        content = request.json
-        sql_layer.del_user(content["id"])
+        sql_layer.del_user(user_id)
         msg = {"reply": "user deleted"}
         status = 200
 
